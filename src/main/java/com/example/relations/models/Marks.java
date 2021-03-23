@@ -5,31 +5,33 @@ import lombok.*;
 
 import javax.persistence.*;
 
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
-@ToString(exclude = {"users"})
-public class Product {
+@ToString(exclude = {"student"})
+public class Marks {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String title;
+    private int mark;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore
-    private User user;
+    private Student student;
 
 
-    public Product(String title) {
-        this.title = title;
+
+    public Marks(int mark) {
+        this.mark = mark;
     }
 
-    public Product(String title, User user) {
-        this.title = title;
-        this.user = user;
+    public Marks(int mark, Student student) {
+        this.mark = mark;
+        this.student = student;
     }
 }
